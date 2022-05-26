@@ -136,7 +136,7 @@ setLogonScript() {
     # download logon script if it doesn't exist
     if [ ! -f "$logonScriptLocation" ]; then
         output "Downloading logon script"
-        curl -o "$logonScriptLocation" "$logonScriptURL"
+        sudo curl -o "$logonScriptLocation" "$logonScriptURL"
     else
         output "Logon script already exists"
     fi
@@ -149,7 +149,7 @@ setLogonScript() {
     # Download logon plist if it doesn't exist
     if [ ! -f "$logonPlistLocation" ]; then
         output "Downloading logon plist"
-        curl -o "$logonPlistLocation" "$logonPlistURL"
+        sudo curl -o "$logonPlistLocation" "$logonPlistURL"
     else
         output "Logon plist already exists"
     fi
