@@ -37,21 +37,37 @@ updateBrew() {
 }
 
 installGoogleChrome() {
-    output "Installing Google Chrome"
-    brew install --cask google-chrome
+    # Install Google Chrome if not installed
+    if ! brew list --cask -1 google-chrome >/dev/null; then
+        output "Installing Google Chrome"
+        brew install --cask google-chrome
+    else
+        output "Google Chrome already installed"
+    fi
 }
 
 installFirefox() {
-    output "Installing Firefox"
-    brew install --cask firefox
+    # Install Firefox if not installed
+    if ! brew list --cask -1 firefox >/dev/null; then
+        output "Installing Firefox"
+        brew install --cask firefox
+    else
+        output "Firefox already installed"
+    fi
 }
 
 installVSCode() {
-    output "Installing VSCode"
-    brew install --cask visual-studio-code
+    # Install Visual Studio Code if not installed
+    if ! brew list --cask -1 visual-studio-code >/dev/null; then
+        output "Installing Visual Studio Code"
+        brew install --cask visual-studio-code
+    else
+        output "Visual Studio Code already installed"
+    fi
 }
 
 installGit() {
+    # Install Git if not installed
     output "Installing Git"
     brew install git
 }
@@ -65,15 +81,20 @@ installPython() {
     output "Installing Python"
     brew install python
 
-    echo "alias python=/usr/local/bin/python3" >>"$HOME/.zshrc"
-    echo "alias pip=/usr/local/bin/pip3" >>"$HOME/.zshrc"
+    # echo "alias python=/usr/local/bin/python3" >>"$HOME/.zshrc"
+    # echo "alias pip=/usr/local/bin/pip3" >>"$HOME/.zshrc"
 
-    source "$HOME/.zshrc"
+    # source "$HOME/.zshrc"
 }
 
 installNode() {
-    output "Installing Node"
-    brew install node
+    # Install Node if not installed
+    if ! command -v node >/dev/null; then
+        output "Installing Node"
+        brew install node
+    else
+        output "Node already installed"
+    fi
 }
 
 installXCode() {
