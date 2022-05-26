@@ -57,6 +57,9 @@ installVim() {
 installPython() {
     output "Installing Python"
     brew install python
+
+    echo "alias python=/usr/local/bin/python3" >>"$HOME/.zshrc"
+    echo "alias pip=/usr/local/bin/pip3" >>"$HOME/.zshrc"
 }
 
 installNode() {
