@@ -15,8 +15,13 @@ setAutoLoginUser() {
 }
 
 installHomebrew() {
-    output "Installing Homebrew"
-    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # Check if Homebrew is installed
+    if ! command -v brew >/dev/null; then
+        output "Installing Homebrew"
+        NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    else
+        output "Homebrew already installed"
+    fi
 }
 
 disableHomebrewAnalytics() {
@@ -60,6 +65,8 @@ installPython() {
 
     echo "alias python=/usr/local/bin/python3" >>"$HOME/.zshrc"
     echo "alias pip=/usr/local/bin/pip3" >>"$HOME/.zshrc"
+
+    source "$HOME/.zshrc"
 }
 
 installNode() {
@@ -86,7 +93,7 @@ installNextDNS() {
 
 installDockutil() {
     output "Installing Dockutil"
-    brew install dockutil
+    brew install --cask hpedrorodrigues/tools/dockutil
 }
 
 updateDock() {
