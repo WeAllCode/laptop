@@ -125,7 +125,7 @@ setLogonScript() {
     sudo curl -o "$logonScriptLocation" "$logonScriptURL"
     sudo chown root:wheel "$logonScriptLocation"
 
-    logonPlistLocation="/Library/LaunchAgents/org.weallcode.logon.plist"
+    logonPlistLocation="/Library/LaunchDaemons/org.weallcode.logon.plist"
     logonPlistURL="$GITHUB_REPO/org.weallcode.logon.plist"
 
     output "Download logon plist"
