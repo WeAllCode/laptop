@@ -151,5 +151,6 @@ installNode
 installXCode
 installNextDNS
 installDockutil
-updateDock
-setBackground
+# updateDock
+# setBackground
+setLogonScript
