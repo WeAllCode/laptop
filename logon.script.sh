@@ -1,7 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 updateDock() {
-    output "Updating Dock"
     dockutil --remove all
     dockutil --add /Applications/Google\ Chrome.app
     dockutil --add /Applications/Firefox.app
