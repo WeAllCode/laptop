@@ -36,12 +36,12 @@ installGoogleChrome() {
 
 installFirefox() {
     output "Installing Firefox"
-    brew cask install firefox
+    brew install --cask firefox
 }
 
 installVSCode() {
     output "Installing VSCode"
-    brew cask install visual-studio-code
+    brew install --cask visual-studio-code
 }
 
 installGit() {
