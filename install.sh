@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+GITHUB_REPO="https://raw.githubusercontent.com/WeAllCode/laptop/master"
+
 output() {
     printf "\n\n✅ %s\n" "$1"
 }
@@ -96,23 +98,42 @@ installDockutil() {
     brew install --cask hpedrorodrigues/tools/dockutil
 }
 
-updateDock() {
-    output "Updating Dock"
-    dockutil --remove all
-    dockutil --add /Applications/Google\ Chrome.app
-    dockutil --add /Applications/Firefox.app
-    dockutil --add /Applications/Visual\ Studio\ Code.app
-}
+# updateDock() {
+#     output "Updating Dock"
+#     dockutil --remove all
+#     dockutil --add /Applications/Google\ Chrome.app
+#     dockutil --add /Applications/Firefox.app
+#     dockutil --add /Applications/Visual\ Studio\ Code.app
+# }
 
-setBackground() {
-    desktopPictureLocation="$HOME/Pictures/weallcode-background.png"
-    desktopPictureURL="https://raw.githubusercontent.com/WeAllCode/linux-update/master/usr/share/backgrounds/weallcode-background.png"
+# setBackground() {
+#     desktopPictureLocation="$HOME/Pictures/weallcode-background.png"
+#     desktopPictureURL="$GITHUB_REPO/weallcode-background.png"
 
-    output "Download background"
-    curl -o "$desktopPictureLocation" "$desktopPictureURL"
+#     output "Download background"
+#     curl -o "$desktopPictureLocation" "$desktopPictureURL"
 
-    output "Setting background"
-    osascript -e "tell application \"System Events\" to set picture of every desktop to \"$desktopPictureLocation\""
+#     output "Setting background"
+#     osascript -e "tell application \"System Events\" to set picture of every desktop to \"$desktopPictureLocation\""
+# }
+
+setLogonScript() {
+    logonScriptLocation="/Users/Shared/logon.script.sh"
+    logonScriptURL="$GITHUB_REPO/logon.script.sh"
+
+    output "Download logon script"
+    sudo curl -o "$logonScriptLocation" "$logonScriptURL"
+    sudo chown root:wheel "$logonScriptLocation"
+
+    logonPlistLocation="/Library/LaunchAgents/org.weallcode.logon.plist"
+    logonPlistURL="$GITHUB_REPO/org.weallcode.logon.plist"
+
+    output "Download logon plist"
+    sudo curl -o "$logonPlistLocation" "$logonPlistURL"
+
+    output "Enabling logon plist"
+    sudo chown root "$logonPlistLocation"
+    sudo launchctl load "$logonPlistLocation"
 }
 
 enableGuestAccount
