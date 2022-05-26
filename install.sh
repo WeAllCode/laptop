@@ -6,7 +6,7 @@ output() {
 
 enableGuestAccount() {
     output "Enabling guest account"
-    sudo sysadminctl -guestAccount off
+    sudo sysadminctl -guestAccount on
 }
 
 setAutoLoginUser() {
