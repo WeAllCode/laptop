@@ -78,12 +78,19 @@ installNode() {
 
 installXCode() {
     output "Installing XCode"
-    xcode-select --install
+    # brew install mas
+    # mas install 497799835
+    # xcode-select --install
 }
 
 installNextDNS() {
-    output "Installing NextDNS"
-    brew install nextdns/tap/nextdns
+    # Install NextDNS if not installed
+    if ! command -v nextdns >/dev/null; then
+        output "Installing NextDNS"
+        brew install nextdns/tap/nextdns
+    else
+        output "NextDNS already installed"
+    fi
 
     output "Configuring NextDNS"
     sudo nextdns install \
@@ -94,8 +101,13 @@ installNextDNS() {
 }
 
 installDockutil() {
-    output "Installing Dockutil"
-    brew install --cask hpedrorodrigues/tools/dockutil
+    # Install dockutil if it's not installed
+    if ! command -v dockutil >/dev/null; then
+        output "Installing dockutil"
+        brew install --cask hpedrorodrigues/tools/dockutil
+    else
+        output "dockutil already installed"
+    fi
 }
 
 # updateDock() {
@@ -121,15 +133,26 @@ setLogonScript() {
     logonScriptLocation="/Users/Shared/logon.script.sh"
     logonScriptURL="$GITHUB_REPO/logon.script.sh"
 
-    output "Download logon script"
-    sudo curl -o "$logonScriptLocation" "$logonScriptURL"
-    sudo chown root:wheel "$logonScriptLocation"
+    # download logon script if it doesn't exist
+    if [ ! -f "$logonScriptLocation" ]; then
+        output "Downloading logon script"
+        curl -o "$logonScriptLocation" "$logonScriptURL"
+    else
+        output "Logon script already exists"
+    fi
+
+    sudo chown root "$logonScriptLocation"
 
     logonPlistLocation="/Library/LaunchDaemons/org.weallcode.logon.plist"
     logonPlistURL="$GITHUB_REPO/org.weallcode.logon.plist"
 
-    output "Download logon plist"
-    sudo curl -o "$logonPlistLocation" "$logonPlistURL"
+    # Download logon plist if it doesn't exist
+    if [ ! -f "$logonPlistLocation" ]; then
+        output "Downloading logon plist"
+        curl -o "$logonPlistLocation" "$logonPlistURL"
+    else
+        output "Logon plist already exists"
+    fi
 
     output "Enabling logon plist"
     sudo chown root "$logonPlistLocation"
