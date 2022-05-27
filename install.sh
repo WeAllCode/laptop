@@ -171,6 +171,7 @@ setLogonScript() {
     output "Enabling log on plist"
     sudo chown root "$logonPlistLocation"
     sudo launchctl load "$logonPlistLocation"
+    launchctl load "$logonPlistLocation"
 
     # # for reference:
     # # ditto -c -k --sequesterRsrc --keepParent weallcode-logon.app weallcode-logon.app.zip
