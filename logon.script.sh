@@ -1,22 +1,12 @@
 #!/bin/bash
 
-updateDock() {
-    dockutil --remove all
-    dockutil --add /Applications/Google\ Chrome.app
-    dockutil --add /Applications/Firefox.app
-    dockutil --add /Applications/Visual\ Studio\ Code.app
-}
+# updateDock
+/usr/local/bin/dockutil --remove all --add /Applications/Google\ Chrome.app --add /Applications/Firefox.app --add /Applications/Visual\ Studio\ Code.app
 
-setBackground() {
-    desktopPictureLocation="$HOME/Pictures/weallcode-background.png"
-    desktopPictureURL="https://raw.githubusercontent.com/WeAllCode/linux-update/master/usr/share/backgrounds/weallcode-background.png"
+# setBackground
+desktopPictureLocation="/Users/Shared/weallcode-background.png"
+desktopPictureURL="https://raw.githubusercontent.com/WeAllCode/linux-update/master/usr/share/backgrounds/weallcode-background.png"
 
-    output "Download background"
-    curl -o "$desktopPictureLocation" "$desktopPictureURL"
+/usr/bin/curl -o "$desktopPictureLocation" "$desktopPictureURL"
 
-    output "Setting background"
-    osascript -e "tell application \"System Events\" to set picture of every desktop to \"$desktopPictureLocation\""
-}
-
-updateDock
-setBackground
+/usr/bin/osascript -e "tell application \"System Events\" to set picture of every desktop to \"$desktopPictureLocation\""

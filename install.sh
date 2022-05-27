@@ -151,51 +151,51 @@ installDockutil() {
 # }
 
 setLogonScript() {
-    # logonScriptLocation="/Users/Shared/logon.script.sh"
-    # logonScriptURL="$GITHUB_REPO/logon.script.sh"
-
-    # # download logon script if it doesn't exist
-    # if [ ! -f "$logonScriptLocation" ]; then
-    #     output "Downloading logon script"
-    #     sudo curl -o "$logonScriptLocation" "$logonScriptURL"
-    # else
-    #     output "Logon script already exists"
-    # fi
-
-    # sudo chown root "$logonScriptLocation"
-    # sudo chmod +x "$logonScriptLocation"
-
-    # logonPlistLocation="/Library/LaunchDaemons/org.weallcode.logon.plist"
-    # logonPlistURL="$GITHUB_REPO/org.weallcode.logon.plist"
-
-    # # Download logon plist if it doesn't exist
-    # if [ ! -f "$logonPlistLocation" ]; then
-    #     output "Downloading logon plist"
-    #     sudo curl -o "$logonPlistLocation" "$logonPlistURL"
-    # else
-    #     output "Logon plist already exists"
-    # fi
-
-    # output "Enabling logon plist"
-    # sudo chown root "$logonPlistLocation"
-    # sudo launchctl load "$logonPlistLocation"
-
-    # for reference:
-    # ditto -c -k --sequesterRsrc --keepParent weallcode-logon.app weallcode-logon.app.zip
-
-    logonScriptLocation="/Users/Shared/weallcode-logon.app"
-    logonScriptURL="$GITHUB_REPO/weallcode-logon.app.zip"
+    logonScriptLocation="/Users/Shared/logon.script.sh"
+    logonScriptURL="$GITHUB_REPO/logon.script.sh"
 
     # download logon script if it doesn't exist
     if [ ! -f "$logonScriptLocation" ]; then
         output "Downloading logon script"
-        curl -o "$logonScriptLocation.zip" "$logonScriptURL"
-        ditto -x -k "$logonScriptLocation.zip" "$logonScriptLocation"
+        sudo curl -o "$logonScriptLocation" "$logonScriptURL"
     else
         output "Logon script already exists"
     fi
 
-    osascript -e "tell application \"System Events\" to make login item at end with properties {path:\"$logonScriptLocation\", hidden:false}"
+    sudo chown root "$logonScriptLocation"
+    sudo chmod +x "$logonScriptLocation"
+
+    logonPlistLocation="/Library/LaunchDaemons/org.weallcode.logon.plist"
+    logonPlistURL="$GITHUB_REPO/org.weallcode.logon.plist"
+
+    # Download logon plist if it doesn't exist
+    if [ ! -f "$logonPlistLocation" ]; then
+        output "Downloading logon plist"
+        sudo curl -o "$logonPlistLocation" "$logonPlistURL"
+    else
+        output "Logon plist already exists"
+    fi
+
+    output "Enabling logon plist"
+    sudo chown root "$logonPlistLocation"
+    sudo launchctl load "$logonPlistLocation"
+
+    # # for reference:
+    # # ditto -c -k --sequesterRsrc --keepParent weallcode-logon.app weallcode-logon.app.zip
+
+    # logonScriptLocation="/Users/Shared/weallcode-logon.app"
+    # logonScriptURL="$GITHUB_REPO/weallcode-logon.app.zip"
+
+    # # download logon script if it doesn't exist
+    # if [ ! -f "$logonScriptLocation" ]; then
+    #     output "Downloading logon script"
+    #     curl -o "$logonScriptLocation.zip" "$logonScriptURL"
+    #     ditto -x -k "$logonScriptLocation.zip" "$logonScriptLocation"
+    # else
+    #     output "Logon script already exists"
+    # fi
+
+    # osascript -e "tell application \"System Events\" to make login item at end with properties {path:\"$logonScriptLocation\", hidden:false}"
 
 }
 
