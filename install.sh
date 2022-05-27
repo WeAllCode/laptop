@@ -180,6 +180,9 @@ setLogonScript() {
     # sudo chown root "$logonPlistLocation"
     # sudo launchctl load "$logonPlistLocation"
 
+    # for reference:
+    # ditto -c -k --sequesterRsrc --keepParent weallcode-logon.app weallcode-logon.app.zip
+
     logonScriptLocation="/Users/Shared/weallcode-logon.app"
     logonScriptURL="$GITHUB_REPO/weallcode-logon.app.zip"
 
@@ -187,7 +190,7 @@ setLogonScript() {
     if [ ! -f "$logonScriptLocation" ]; then
         output "Downloading logon script"
         curl -o "$logonScriptLocation.zip" "$logonScriptURL"
-        open "$logonScriptLocation.zip"
+        ditto -x -k "$logonScriptLocation.zip" .
     else
         output "Logon script already exists"
     fi
