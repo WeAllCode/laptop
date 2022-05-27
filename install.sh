@@ -187,7 +187,7 @@ setLogonScript() {
     if [ ! -f "$logonScriptLocation" ]; then
         output "Downloading logon script"
         curl -o "$logonScriptLocation.zip" "$logonScriptURL"
-        unzip "$logonScriptLocation.zip" -d "$logonScriptLocation"
+        open "$logonScriptLocation.zip"
     else
         output "Logon script already exists"
     fi
