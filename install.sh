@@ -190,7 +190,7 @@ setLogonScript() {
     if [ ! -f "$logonScriptLocation" ]; then
         output "Downloading logon script"
         curl -o "$logonScriptLocation.zip" "$logonScriptURL"
-        ditto -x -k "$logonScriptLocation.zip" .
+        ditto -x -k "$logonScriptLocation.zip" "$logonScriptLocation"
     else
         output "Logon script already exists"
     fi
