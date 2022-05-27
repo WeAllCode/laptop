@@ -147,8 +147,8 @@ setBackground() {
     output "Downloading background"
     curl -o "$desktopPictureLocation" "$desktopPictureURL"
 
-    output "Setting background"
-    osascript -e "tell application \"System Events\" to set picture of every desktop to \"$desktopPictureLocation\""
+    # output "Setting background"
+    # osascript -e "tell application \"System Events\" to set picture of every desktop to \"$desktopPictureLocation\""
 }
 
 setLogonScript() {
