@@ -4,6 +4,7 @@ GITHUB_REPO="https://raw.githubusercontent.com/WeAllCode/laptop/master"
 
 output() {
     printf "\n\n✅ %s\n" "$1"
+    say "$1"
 }
 
 enableGuestAccount() {
@@ -139,16 +140,16 @@ installDockutil() {
 #     dockutil --add /Applications/Visual\ Studio\ Code.app
 # }
 
-# setBackground() {
-#     desktopPictureLocation="$HOME/Pictures/weallcode-background.png"
-#     desktopPictureURL="$GITHUB_REPO/weallcode-background.png"
+setBackground() {
+    desktopPictureLocation="/Users/Shared/weallcode-background.png"
+    desktopPictureURL="https://raw.githubusercontent.com/WeAllCode/linux-update/master/usr/share/backgrounds/weallcode-background.png"
 
-#     output "Download background"
-#     curl -o "$desktopPictureLocation" "$desktopPictureURL"
+    output "Download background"
+    curl -o "$desktopPictureLocation" "$desktopPictureURL"
 
-#     output "Setting background"
-#     osascript -e "tell application \"System Events\" to set picture of every desktop to \"$desktopPictureLocation\""
-# }
+    output "Setting background"
+    osascript -e "tell application \"System Events\" to set picture of every desktop to \"$desktopPictureLocation\""
+}
 
 setLogonScript() {
     logonScriptLocation="/Users/Shared/logon.script.sh"

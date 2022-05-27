@@ -13,11 +13,11 @@ say "Dock updated."
 
 # setBackground
 desktopPictureLocation="/Users/Shared/weallcode-background.png"
-desktopPictureURL="https://raw.githubusercontent.com/WeAllCode/linux-update/master/usr/share/backgrounds/weallcode-background.png"
+# desktopPictureURL="https://raw.githubusercontent.com/WeAllCode/linux-update/master/usr/share/backgrounds/weallcode-background.png"
 
-/usr/bin/curl -o "$desktopPictureLocation" "$desktopPictureURL"
+# /usr/bin/curl -o "$desktopPictureLocation" "$desktopPictureURL"
 
-say "Wallpaper downloaded."
+# say "Wallpaper downloaded."
 
 /usr/bin/osascript -e "tell application \"System Events\" to set picture of every desktop to \"$desktopPictureLocation\""
 
