@@ -4,7 +4,7 @@ GITHUB_REPO="https://raw.githubusercontent.com/WeAllCode/laptop/master"
 
 output() {
     printf "\n\n✅ %s\n" "$1"
-    say "$1"
+    say -r 300 "$1"
 }
 
 enableGuestAccount() {
@@ -216,5 +216,5 @@ installXCode
 installNextDNS
 installDockutil
 # updateDock
-# setBackground
+setBackground
 setLogonScript
