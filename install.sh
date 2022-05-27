@@ -155,13 +155,8 @@ setLogonScript() {
     logonScriptLocation="/Users/Shared/logon.script.sh"
     logonScriptURL="$GITHUB_REPO/logon.script.sh"
 
-    # download logon script if it doesn't exist
-    if [ ! -f "$logonScriptLocation" ]; then
-        output "Downloading logon script"
-        sudo curl -o "$logonScriptLocation" "$logonScriptURL"
-    else
-        output "Logon script already exists"
-    fi
+    output "Downloading logon script"
+    sudo curl -o "$logonScriptLocation" "$logonScriptURL"
 
     sudo chown root "$logonScriptLocation"
     sudo chmod +x "$logonScriptLocation"
@@ -169,13 +164,11 @@ setLogonScript() {
     logonPlistLocation="/Library/LaunchDaemons/org.weallcode.logon.plist"
     logonPlistURL="$GITHUB_REPO/org.weallcode.logon.plist"
 
-    # Download logon plist if it doesn't exist
-    if [ ! -f "$logonPlistLocation" ]; then
-        output "Downloading logon plist"
-        sudo curl -o "$logonPlistLocation" "$logonPlistURL"
-    else
-        output "Logon plist already exists"
-    fi
+    sudo launchctl unload "$logonPlistLocation"
+
+    # Download logon plist
+    output "Downloading logon plist"
+    sudo curl -o "$logonPlistLocation" "$logonPlistURL"
 
     output "Enabling logon plist"
     sudo chown root "$logonPlistLocation"
