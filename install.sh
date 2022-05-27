@@ -161,7 +161,7 @@ setLogonScript() {
     sudo chown root "$logonScriptLocation"
     sudo chmod +x "$logonScriptLocation"
 
-    logonPlistLocation="/Library/LaunchDaemons/org.weallcode.logon.plist"
+    logonPlistLocation="/Library/LaunchAgents/org.weallcode.logon.plist"
     logonPlistURL="$GITHUB_REPO/org.weallcode.logon.plist"
 
     # Download logon plist
