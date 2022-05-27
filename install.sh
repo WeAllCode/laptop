@@ -144,7 +144,7 @@ setBackground() {
     desktopPictureLocation="/Users/Shared/weallcode-background.png"
     desktopPictureURL="https://raw.githubusercontent.com/WeAllCode/linux-update/master/usr/share/backgrounds/weallcode-background.png"
 
-    output "Download background"
+    output "Downloading background"
     curl -o "$desktopPictureLocation" "$desktopPictureURL"
 
     output "Setting background"
@@ -155,8 +155,8 @@ setLogonScript() {
     logonScriptLocation="/Users/Shared/logon.script.sh"
     logonScriptURL="$GITHUB_REPO/logon.script.sh"
 
-    output "Downloading logon script"
-    sudo curl -o "$logonScriptLocation" "$logonScriptURL"
+    output "Downloading log on script"
+    sudo curl -fsSL "$logonScriptURL" -o "$logonScriptLocation"
 
     sudo chown root "$logonScriptLocation"
     sudo chmod +x "$logonScriptLocation"
@@ -164,13 +164,11 @@ setLogonScript() {
     logonPlistLocation="/Library/LaunchDaemons/org.weallcode.logon.plist"
     logonPlistURL="$GITHUB_REPO/org.weallcode.logon.plist"
 
-    sudo launchctl unload "$logonPlistLocation"
-
     # Download logon plist
-    output "Downloading logon plist"
-    sudo curl -o "$logonPlistLocation" "$logonPlistURL"
+    output "Downloading log on plist"
+    sudo curl -fsSL "$logonPlistURL" -o "$logonPlistLocation"
 
-    output "Enabling logon plist"
+    output "Enabling log on plist"
     sudo chown root "$logonPlistLocation"
     sudo launchctl load "$logonPlistLocation"
 
