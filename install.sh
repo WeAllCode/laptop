@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
+#
+# To install:
+#
+# /bin/bash -c "$(curl -fsSL wac.fyi/mac)"
+#
 
-GITHUB_REPO="https://raw.githubusercontent.com/WeAllCode/laptop/master"
+{ # this ensures the entire script is downloaded #
+
+GITHUB_REPO="https://raw.githubusercontent.com/WeAllCode/laptop/main"
 
 output() {
     printf "\n\n✅ %s\n" "$1"
@@ -210,3 +217,5 @@ installDockutil
 # updateDock
 setBackground
 setLogonScript
+
+}

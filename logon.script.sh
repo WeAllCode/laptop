@@ -1,9 +1,11 @@
 #!/bin/bash
 
-sleep 5
+sleep 10
 
 # Update Dock
 /usr/local/bin/dockutil --remove all --add /Applications/Google\ Chrome.app --add /Applications/Firefox.app --add /Applications/Visual\ Studio\ Code.app
+
+sleep 5
 
 # Set Background
 desktopPictureLocation="/Users/Shared/weallcode-background.png"
