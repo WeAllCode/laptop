@@ -205,6 +205,7 @@ setLogonScript() {
 
 }
 
+runSoftwareUpdate
 enableGuestAccount
 setAutoLoginUser
 installHomebrew
