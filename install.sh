@@ -14,6 +14,12 @@ output() {
     say -r 300 "$1"
 }
 
+# install all software updates
+runSoftwareUpdate() {
+    output "Installing software updates"
+    sudo softwareupdate -i -a
+}
+
 enableGuestAccount() {
     output "Enabling guest account"
     sudo sysadminctl -guestAccount on
