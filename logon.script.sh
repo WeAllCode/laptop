@@ -1,12 +1,11 @@
 #!/bin/bash
 
-sleep 10
+# Set Background
+desktopPictureLocation="/Users/Shared/weallcode-background.png"
+sqlite3 ~/Library/Application\ Support/Dock/desktoppicture.db "update data set value = '${desktopPictureLocation}'"
 
 # Update Dock
 /usr/local/bin/dockutil --remove all --add /Applications/Google\ Chrome.app --add /Applications/Firefox.app --add /Applications/Visual\ Studio\ Code.app
 
-sleep 5
-
-# Set Background
-desktopPictureLocation="/Users/Shared/weallcode-background.png"
-/usr/bin/osascript -e "tell application \"System Events\" to set picture of every desktop to \"$desktopPictureLocation\""
+# Kill Dock
+killall Dock
