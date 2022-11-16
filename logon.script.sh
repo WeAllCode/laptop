@@ -71,3 +71,6 @@ done
 killall Dock
 
 # ---------------------------------------------
+
+# Open Survey
+open https://wac.fyi/survey
