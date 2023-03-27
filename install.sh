@@ -139,7 +139,7 @@
     # Install unity
     installUnity() {
         # Install Unity if not installed
-        if ! command -v unity >/dev/null; then
+        if ! brew list --cask -1 unity >/dev/null; then
             output "Installing Unity"
             brew install --cask unity
         else
