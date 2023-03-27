@@ -102,7 +102,7 @@
 
     installPython() {
         # Install Python if not installed
-        if ! command -v python >/dev/null; then
+        if ! command -v python3 >/dev/null; then
             output "Installing Python"
             brew install python
 
