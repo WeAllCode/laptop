@@ -60,10 +60,10 @@ done
 
 # Update Dock
 /usr/local/bin/dockutil --remove all \
-    --add /Applications/Safari.app \
     --add /Applications/Google\ Chrome.app \
     --add /Applications/Firefox.app \
-    --add /Applications/Visual\ Studio\ Code.app
+    --add /Applications/Visual\ Studio\ Code.app \
+    --add /Applications/Unity/Unity.app
 
 # ---------------------------------------------
 

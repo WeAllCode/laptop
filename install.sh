@@ -175,11 +175,11 @@
 
     updateDock() {
         output "Updating Dock"
-        dockutil --remove all
-        dockutil --add /Applications/Google\ Chrome.app
-        dockutil --add /Applications/Firefox.app
-        dockutil --add /Applications/Visual\ Studio\ Code.app
-        dockutil --add /Applications/Unity/Unity.app
+        dockutil --remove all \
+            --add /Applications/Google\ Chrome.app \
+            --add /Applications/Firefox.app \
+            --add /Applications/Visual\ Studio\ Code.app \
+            --add /Applications/Unity/Unity.app
     }
 
     setBackground() {
