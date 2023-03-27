@@ -118,6 +118,17 @@ installXCode() {
     # xcode-select --install
 }
 
+# Install unity
+installUnity() {
+    # Install Unity if not installed
+    if ! command -v unity >/dev/null; then
+        output "Installing Unity"
+        brew install --cask unity
+    else
+        output "Unity already installed"
+    fi
+}
+
 installNextDNS() {
     # Install NextDNS if not installed
     if ! command -v nextdns >/dev/null; then
@@ -219,6 +230,7 @@ installVim
 installPython
 installNode
 installXCode
+installUnity
 installNextDNS
 installDockutil
 # updateDock
