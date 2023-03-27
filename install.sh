@@ -156,13 +156,15 @@ installDockutil() {
     fi
 }
 
-# updateDock() {
-#     output "Updating Dock"
-#     dockutil --remove all
-#     dockutil --add /Applications/Google\ Chrome.app
-#     dockutil --add /Applications/Firefox.app
-#     dockutil --add /Applications/Visual\ Studio\ Code.app
-# }
+updateDock() {
+    output "Updating Dock"
+    dockutil --remove all
+    dockutil --add /Applications/Google\ Chrome.app
+    dockutil --add /Applications/Firefox.app
+    dockutil --add /Applications/Visual\ Studio\ Code.app
+    dockutil --add /Applications/Unity/Unity.app
+    dockutil --add /Applications/Utilities/Terminal.app
+}
 
 setBackground() {
     desktopPictureLocation="/Users/Shared/weallcode-background.png"
@@ -233,7 +235,7 @@ installXCode
 installUnity
 installNextDNS
 installDockutil
-# updateDock
+updateDock
 setBackground
 setLogonScript
 
