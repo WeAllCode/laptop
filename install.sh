@@ -234,7 +234,7 @@
 
     }
 
-    runSoftwareUpdate
+    # runSoftwareUpdate
     enableGuestAccount
     setAutoLoginUser
     installHomebrew
