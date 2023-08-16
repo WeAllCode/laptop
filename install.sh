@@ -47,7 +47,12 @@
 
     updateBrew() {
         output "Updating Homebrew"
-        brew update
+        brew upgrade
+    }
+
+    removeOldTapsInBrew() {
+        brew untap homebrew/core
+        brew untap homebrew/cask
     }
 
     installGoogleChrome() {
@@ -240,6 +245,7 @@
     installHomebrew
     disableHomebrewAnalytics
     updateBrew
+    removeOldTapsInBrew
     installGoogleChrome
     installFirefox
     installVSCode
