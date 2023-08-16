@@ -239,7 +239,7 @@
 
     }
 
-    # runSoftwareUpdate
+    runSoftwareUpdate # Runs slow
     enableGuestAccount
     setAutoLoginUser
     installHomebrew
