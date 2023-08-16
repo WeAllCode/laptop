@@ -47,7 +47,7 @@
 
     updateBrew() {
         output "Updating Homebrew"
-        brew upgrade
+        brew upgrade --greedy
     }
 
     removeOldTapsInBrew() {
