@@ -10,6 +10,8 @@ open https://wac.fyi/survey
 
 # ---------------------------------------------
 
+sleep 1
+
 # Update Dock
 # don't set background and update dock back to back, they seem to cause a race condition as they restart the dock/desktop
 /usr/local/bin/dockutil --remove all \
