@@ -208,11 +208,13 @@
         sudo chown root "$logonScriptLocation"
         sudo chmod +x "$logonScriptLocation"
         
-        automatorLocation="/Users/Shared/"
-        automatorURL="$GITHUB_REPO/setDesktopWallpaper.workflow"
+        automatorZipLocation="/Users/Shared/setDesktopWallpaper.workflow.zip"
+        automatorLocation="/Users/Shared/setDesktopWallpaper.workflow"
+        automatorURL="$GITHUB_REPO/setDesktopWallpaper.workflow.zip"
 
-        output "Downloading log on script"
-        sudo curl -fsSL "$automatorURL" -o "$automatorLocation"
+        sudo curl -fsSL "$automatorURL" -o "$automatorZipLocation"
+
+        unzip -o $automatorZipLocation
 
         sudo chown root "$automatorLocation"
         sudo chmod +x "$automatorLocation"
