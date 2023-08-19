@@ -207,6 +207,15 @@
 
         sudo chown root "$logonScriptLocation"
         sudo chmod +x "$logonScriptLocation"
+        
+        automatorLocation="/Users/Shared/"
+        automatorURL="$GITHUB_REPO/setDesktopWallpaper.workflow"
+
+        output "Downloading log on script"
+        sudo curl -fsSL "$automatorURL" -o "$automatorLocation"
+
+        sudo chown root "$automatorLocation"
+        sudo chmod +x "$automatorLocation"
 
         logonPlistLocation="/Library/LaunchAgents/org.weallcode.logon.plist"
         logonPlistURL="$GITHUB_REPO/org.weallcode.logon.plist"
