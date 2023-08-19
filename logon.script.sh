@@ -58,6 +58,8 @@ done
 
 # ---------------------------------------------
 
+killall Dock
+
 # Update Dock
 /usr/local/bin/dockutil --remove all \
     --add /Applications/Google\ Chrome.app \
