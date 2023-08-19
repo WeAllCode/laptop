@@ -214,10 +214,11 @@
 
         sudo curl -fsSL "$automatorURL" -o "$automatorZipLocation"
 
-        unzip -o $automatorZipLocation
-
-        sudo chown root "$automatorLocation"
-        sudo chmod +x "$automatorLocation"
+        unzip -o $automatorZipLocation -d "/Users/Shared"
+        rm "$automatorZipLocation"
+        
+        sudo chown -R root "$automatorLocation"
+        sudo chmod -R +x "$automatorLocation"
 
         logonPlistLocation="/Library/LaunchAgents/org.weallcode.logon.plist"
         logonPlistURL="$GITHUB_REPO/org.weallcode.logon.plist"
