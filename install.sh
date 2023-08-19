@@ -214,7 +214,8 @@
 
         sudo curl -fsSL "$automatorURL" -o "$automatorZipLocation"
 
-        sudo unzip -o $automatorZipLocation -d "/Users/Shared"
+        sudo unzip -o "$automatorZipLocation" -d "/Users/Shared"
+        sudo chown root "$automatorZipLocation"
         sudo rm "$automatorZipLocation"
         
         sudo chown -R root "$automatorLocation"
