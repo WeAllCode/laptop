@@ -63,22 +63,20 @@
     updateBrew() {
         output "Updating Homebrew"
         brew update
-
-        output "Uninstall nextdns"
-        brew uninstall nextdns
-
-        output "Uninstall firefox"
-        brew uninstall firefox
     }
 
     upgradeBrew() {
         output "Upgrading Homebrew"
-        brew cu --yes
+        brew cu --quiet --force --yes
     }
 
-    removeOldTapsInBrew() {
-        brew untap homebrew/core
-        brew untap homebrew/cask
+    brewUntap() {
+        if brew tap | grep "^$1$" >/dev/null; then
+            output "Untapping $1"
+            brew untap "$1"
+        else
+            output "$1 already untapped"
+        fi
     }
 
     brewInstall() {
@@ -107,6 +105,19 @@
                 brew upgrade $SPECIFIC_URL
             fi
 
+        fi
+    }
+
+    brewUninstall() {
+        NAME=$1
+        FORMULA_NAME=$2
+
+        # Check if $NAME is installed
+        if brew list -1 | grep "^$FORMULA_NAME$" >/dev/null; then
+            output "Uninstalling $NAME"
+            brew uninstall --force "$FORMULA_NAME"
+        else
+            output "$NAME already uninstalled"
         fi
     }
 
@@ -193,7 +204,10 @@
     installXCode
 
     updateBrew
-    removeOldTapsInBrew
+    brewUninstall "NextDNS" "nextdns"
+    brewUninstall "Firefox" "firefox"
+    brewUntap "homebrew/core"
+    brewUntap "homebrew/cask"
 
     tapHomebrew "buo/cask-upgrade" # brew cu
 
