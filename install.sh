@@ -284,6 +284,7 @@
     setAutoLoginUser
     installHomebrew
     disableHomebrewAnalytics
+    uninstallNextDNS
     updateBrew
     removeOldTapsInBrew
     installGoogleChrome
@@ -297,7 +298,6 @@
     #installXCode
     #installUnity
     #installNextDNS
-    uninstallNextDNS
     installDockutil
     installPythonPackage
     updateDock
