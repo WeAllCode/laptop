@@ -1,0 +1,29 @@
+{
+    // Python settings
+    // "python.pythonPath": "/usr/bin/python3",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": [
+        "--disable=C0114", // Disable missing-module-docstring warning
+        "--disable=C0115", // Disable missing-class-docstring warning
+        "--disable=C0116"  // Disable missing-function-docstring warning
+    ],
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--line-length",
+        "120"
+    ],
+
+    // Editor settings
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.wordWrap": "on",
+    "editor.minimap.enabled": false,
+    // "editor.renderWhitespace": "all",
+    "editor.formatOnSave": true,
+
+    // Terminal settings
+    "terminal.integrated.shell.osx": "/bin/zsh",
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontFamily": "Menlo, Monaco, 'Courier New', monospace"
+}

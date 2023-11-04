@@ -83,6 +83,8 @@
         else
             output "Visual Studio Code already installed"
         fi
+
+        code --install-extension ms-python.python
     }
 
     installGit() {
@@ -129,6 +131,12 @@
         fi
     }
 
+    installPurePrompt() {
+        # Install Pure Prompt if not installed
+        output "Installing Pure Prompt"
+        npm install --global pure-prompt
+    }
+
     installXCode() {
         # Install XCode if not installed
         if ! command -v xcode-select >/dev/null; then
@@ -168,6 +176,19 @@
             -auto-activate
     }
 
+    uninstallNextDNS() {
+        # Uninstall NextDNS if installed
+
+        # Check if NextDNS is installed
+        if ! command -v nextdns >/dev/null; then
+            output "NextDNS not installed"
+            return
+        else
+            output "Uninstalling NextDNS"
+            sudo nextdns uninstall
+        fi
+    }
+
     installDockutil() {
         # Install dockutil if it's not installed
         if ! command -v dockutil >/dev/null; then
@@ -176,6 +197,11 @@
         else
             output "dockutil already installed"
         fi
+    }
+
+    installPythonPackage() {
+        pip install --upgrade weallcode_robot
+        pip3 install --upgrade weallcode_robot
     }
 
     updateDock() {
@@ -207,7 +233,7 @@
 
         sudo chown root "$logonScriptLocation"
         sudo chmod +x "$logonScriptLocation"
-        
+
         automatorZipLocation="/Users/Shared/setDesktopWallpaper.workflow.zip"
         automatorLocation="/Users/Shared/setDesktopWallpaper.workflow"
         automatorURL="$GITHUB_REPO/setDesktopWallpaper.workflow.zip"
@@ -217,7 +243,7 @@
         sudo unzip -o "$automatorZipLocation" -d "/Users/Shared"
         sudo chown root "$automatorZipLocation"
         sudo rm "$automatorZipLocation"
-        
+
         sudo chown -R root "$automatorLocation"
         sudo chmod -R +x "$automatorLocation"
 
@@ -252,7 +278,7 @@
 
     }
 
-    runSoftwareUpdate # Runs slow
+    # runSoftwareUpdate # Runs slow
     enableGuestAccount
     setAutoLoginUser
     installHomebrew
@@ -260,16 +286,19 @@
     updateBrew
     removeOldTapsInBrew
     installGoogleChrome
-    installFirefox
+    # installFirefox
     installVSCode
     installGit
     installVim
     installPython
     installNode
-    installXCode
-    installUnity
-    installNextDNS
+    installPurePrompt
+    #installXCode
+    #installUnity
+    #installNextDNS
+    uninstallNextDNS
     installDockutil
+    installPythonPackage
     updateDock
     setBackground
     setLogonScript
