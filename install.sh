@@ -179,14 +179,9 @@
     uninstallNextDNS() {
         # Uninstall NextDNS if installed
 
-        # Check if NextDNS is installed
-        if ! command -v nextdns >/dev/null; then
-            output "NextDNS not installed"
-            return
-        else
-            output "Uninstalling NextDNS"
-            sudo nextdns uninstall
-        fi
+        output "Uninstalling NextDNS"
+        sudo nextdns uninstall
+
     }
 
     installDockutil() {
