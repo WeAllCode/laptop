@@ -82,13 +82,14 @@
         SPECIFIC_URL=$3
 
         # Check if $NAME is installed
-        if ! brew list -1 | grep "$FORMULA_NAME" >/dev/null; then
+        if ! brew list -1 | grep "^$FORMULA_NAME$" >/dev/null; then
             output "Installing $NAME"
 
             if [ -z "$SPECIFIC_URL" ]; then
                 brew install "$FORMULA_NAME"
             else
-                brew install "$SPECIFIC_URL"
+                # shellcheck disable=2086
+                brew install $SPECIFIC_URL
             fi
 
         else
@@ -97,7 +98,8 @@
             if [ -z "$SPECIFIC_URL" ]; then
                 brew upgrade "$FORMULA_NAME"
             else
-                brew upgrade "$SPECIFIC_URL"
+                # shellcheck disable=2086
+                brew upgrade $SPECIFIC_URL
             fi
 
         fi
@@ -228,7 +230,7 @@
     brewInstall "Vim" "vim"
     brewInstall "Python 3.x" "python3"
     brewInstall "Node" "node"
-    brewInstall "Unity" "unity" "https://raw.githubusercontent.com/Homebrew/homebrew-cask/4dc5194f3806a9b10a289cf4eaf68f7eb5528691/Casks/unity.rb" # 2022.1.23f1,9636b062134a
+    brewInstall "Unity" "unity" "--cask https://raw.githubusercontent.com/Homebrew/homebrew-cask/4dc5194f3806a9b10a289cf4eaf68f7eb5528691/Casks/unity.rb" # 2022.1.23f1,9636b062134a
 
     tapHomebrew "hpedrorodrigues/tools"
     brewInstall "Dockutil" "hpedrorodrigues/tools/dockutil"
