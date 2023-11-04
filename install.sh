@@ -50,6 +50,11 @@
         brew tap "$1"
     }
 
+    brewCaskPin() {
+        output "Pinning $1"
+        brew cu pin "$2"
+    }
+
     disableHomebrewAnalytics() {
         output "Disabling Homebrew analytics"
         brew analytics off
@@ -68,7 +73,7 @@
 
     upgradeBrew() {
         output "Upgrading Homebrew"
-        brew upgrade --greedy
+        brew cu --yes
     }
 
     removeOldTapsInBrew() {
@@ -214,7 +219,7 @@
 
     # runSoftwareUpdate # Runs slow
     enableGuestAccount
-    # setAutoLoginUser
+    # setAutoLoginUser # disabled for now
     disableAutoLoginUser
 
     installHomebrew
@@ -224,6 +229,8 @@
     updateBrew
     removeOldTapsInBrew
 
+    tapHomebrew "buo/cask-upgrade" # brew cu
+
     brewInstall "Google Chrome" "google-chrome"
     brewInstall "Visual Studio Code" "visual-studio-code"
     brewInstall "Git" "git"
@@ -231,6 +238,7 @@
     brewInstall "Python 3.x" "python3"
     brewInstall "Node" "node"
     brewInstall "Unity" "unity" "--cask https://raw.githubusercontent.com/Homebrew/homebrew-cask/4dc5194f3806a9b10a289cf4eaf68f7eb5528691/Casks/unity.rb" # 2022.1.23f1,9636b062134a
+    brewCaskPin "Unity" "unity"
 
     tapHomebrew "hpedrorodrigues/tools"
     brewInstall "Dockutil" "hpedrorodrigues/tools/dockutil"
