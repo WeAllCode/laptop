@@ -30,6 +30,11 @@
         sudo defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser -string "Guest"
     }
 
+    disableAutoLoginUser() {
+        output "Disabling auto-login user"
+        sudo defaults delete /Library/Preferences/com.apple.loginwindow autoLoginUser
+    }
+
     installHomebrew() {
         # Check if Homebrew is installed
         if ! command -v brew >/dev/null; then
@@ -38,6 +43,11 @@
         else
             output "Homebrew already installed"
         fi
+    }
+
+    tapHomebrew() {
+        output "Tapping $1"
+        brew tap "$1"
     }
 
     disableHomebrewAnalytics() {
@@ -75,7 +85,7 @@
             output "Installing $NAME"
             brew install "$CASK_NAME"
         else
-            output "$NAME already installed"
+            output "Upgrading $NAME"
             brew upgrade "$CASK_NAME"
         fi
     }
@@ -183,12 +193,16 @@
 
     # runSoftwareUpdate # Runs slow
     enableGuestAccount
-    setAutoLoginUser
+    # setAutoLoginUser
+    disableAutoLoginUser
+
     installHomebrew
     disableHomebrewAnalytics
     installXCode
+
     updateBrew
     removeOldTapsInBrew
+
     installHomebrewFormula "Google Chrome" "google-chrome"
     installHomebrewFormula "Visual Studio Code" "visual-studio-code"
     installHomebrewFormula "Git" "git"
@@ -196,6 +210,8 @@
     installHomebrewFormula "Python 3.x" "python3"
     installHomebrewFormula "Node" "node"
     installHomebrewFormula "Unity" "unity"
+
+    tapHomebrew "hpedrorodrigues/tools"
     installHomebrewFormula "Dockutil" "hpedrorodrigues/tools/dockutil"
 
     installPurePrompt
