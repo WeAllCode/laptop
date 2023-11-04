@@ -24,6 +24,9 @@ curl -fsSL "$GITHUB_REPO/settings.json" -o "$CODE_SETTINGS_LOCATION"
 # Install VS Code Extensions
 code --install-extension ms-python.python
 
+# Upgrade pip
+python3 pip install --upgrade pip
+
 # Install python packages
 pip3 install --upgrade weallcode_robot
 
