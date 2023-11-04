@@ -111,15 +111,17 @@
                 brew install $SPECIFIC_URL
             fi
 
-        # else
-        #     output "Upgrading $NAME"
+        else
+            output "$NAME already installed"
 
-        #     if [ -z "$SPECIFIC_URL" ]; then
-        #         brew upgrade "$FORMULA_NAME"
-        #     else
-        #         # shellcheck disable=2086
-        #         brew upgrade $SPECIFIC_URL
-        #     fi
+            # output "Upgrading $NAME"
+
+            # if [ -z "$SPECIFIC_URL" ]; then
+            #     brew upgrade "$FORMULA_NAME"
+            # else
+            #     # shellcheck disable=2086
+            #     brew upgrade $SPECIFIC_URL
+            # fi
 
         fi
     }
