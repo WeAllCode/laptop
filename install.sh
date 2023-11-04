@@ -237,7 +237,7 @@
     brewInstall "Wallpaper Changer" "wallpaper"
     brewInstall "Python 3.x" "python3"
     brewInstall "Node" "node"
-    brewInstall "Unity" "unity" "--cask https://raw.githubusercontent.com/Homebrew/homebrew-cask/4dc5194f3806a9b10a289cf4eaf68f7eb5528691/Casks/unity.rb" # 2022.1.23f1,9636b062134a
+    # brewInstall "Unity" "unity" "--cask https://raw.githubusercontent.com/Homebrew/homebrew-cask/4dc5194f3806a9b10a289cf4eaf68f7eb5528691/Casks/unity.rb" # 2022.1.23f1,9636b062134a
     brewCaskPin "Unity" "unity"
 
     tapHomebrew "hpedrorodrigues/tools"
