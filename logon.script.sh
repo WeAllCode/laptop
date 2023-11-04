@@ -13,7 +13,6 @@ automator -i /Users/Shared/weallcode-background.png /Users/Shared/setDesktopWall
 codeSettingsLocation="/Users/Shared/Library/Application Support/Code/User/settings.json"
 
 # Download settings.json
-output "Downloading VS Code settings.json"
 sudo curl -fsSL "$GITHUB_REPO/settings.json" -o "$codeSettingsLocation"
 
 # ---------------------------------------------
@@ -28,7 +27,6 @@ pip3 install --upgrade weallcode_robot
 # ---------------------------------------------
 
 # Update zsh prompt
-output "Updating zsh prompt"
 sudo curl -fsSL "$GITHUB_REPO/.zshrc" -o "/Users/Shared/.zshrc"
 
 # ---------------------------------------------
