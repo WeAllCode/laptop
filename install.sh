@@ -76,14 +76,36 @@
         brew untap homebrew/cask
     }
 
-    installHomebrewFormula() {
+    brewInstall() {
+        NAME=$1
+        FORMULA_NAME=$2
+        SPECIFIC_URL=$3
+
+        # Check if $NAME is installed
+        if ! brew list -1 | grep "$FORMULA_NAME" >/dev/null; then
+            output "Installing $NAME"
+
+            if [ -z "$SPECIFIC_URL" ]; then
+                brew install "$FORMULA_NAME"
+            else
+                brew install "$SPECIFIC_URL"
+            fi
+
+        else
+            output "Upgrading $NAME"
+            brew upgrade "$FORMULA_NAME"
+        fi
+    }
+
+    installSpecificHomebrewFormula() {
         NAME=$1
         CASK_NAME=$2
+        VERSION=$3
 
         # Check if $NAME is installed
         if ! brew list -1 | grep "$CASK_NAME" >/dev/null; then
             output "Installing $NAME"
-            brew install "$CASK_NAME"
+            brew install "$CASK_NAME" --version "$VERSION"
         else
             output "Upgrading $NAME"
             brew upgrade "$CASK_NAME"
@@ -209,16 +231,16 @@
     updateBrew
     removeOldTapsInBrew
 
-    installHomebrewFormula "Google Chrome" "google-chrome"
-    installHomebrewFormula "Visual Studio Code" "visual-studio-code"
-    installHomebrewFormula "Git" "git"
-    installHomebrewFormula "Vim" "vim"
-    installHomebrewFormula "Python 3.x" "python3"
-    installHomebrewFormula "Node" "node"
-    installHomebrewFormula "Unity" "unity"
+    brewInstall "Google Chrome" "google-chrome"
+    brewInstall "Visual Studio Code" "visual-studio-code"
+    brewInstall "Git" "git"
+    brewInstall "Vim" "vim"
+    brewInstall "Python 3.x" "python3"
+    brewInstall "Node" "node"
+    brewInstall "Unity" "unity" "https://raw.githubusercontent.com/Homebrew/homebrew-cask/4dc5194f3806a9b10a289cf4eaf68f7eb5528691/Casks/unity.rb" # 2022.1.23f1,9636b062134a
 
     tapHomebrew "hpedrorodrigues/tools"
-    installHomebrewFormula "Dockutil" "hpedrorodrigues/tools/dockutil"
+    brewInstall "Dockutil" "hpedrorodrigues/tools/dockutil"
 
     installPurePrompt
     updateZshRC
