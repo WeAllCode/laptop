@@ -8,6 +8,9 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias python="/usr/local/bin/python3"
+alias pip="/usr/local/bin/pip3"
+
 # Set up some basic environment variables
 export PATH=$PATH:/usr/local/bin
 

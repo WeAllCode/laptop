@@ -66,59 +66,17 @@
         brew untap homebrew/cask
     }
 
-    installGoogleChrome() {
-        # Install Google Chrome
-        output "Installing Google Chrome"
-        brew reinstall --cask --force google-chrome
-    }
+    installHomebrewFormula() {
+        NAME=$1
+        CASK_NAME=$2
 
-    installVSCode() {
-        # Install Visual Studio Code
-        output "Installing Visual Studio Code"
-        brew reinstall --cask --force visual-studio-code
-    }
-
-    installGit() {
-        # Install Git if not installed
-        if ! command -v git >/dev/null; then
-            output "Installing Git"
-            brew install git
+        # Check if $NAME is installed
+        if ! brew list -1 | grep "$CASK_NAME" >/dev/null; then
+            output "Installing $NAME"
+            brew install "$CASK_NAME"
         else
-            output "Git already installed"
-        fi
-    }
-
-    installVim() {
-        # Install Vim if not installed
-        if ! command -v vim >/dev/null; then
-            output "Installing Vim"
-            brew install vim
-        else
-            output "Vim already installed"
-        fi
-    }
-
-    installPython() {
-        # Install Python if not installed
-        if ! command -v python3 >/dev/null; then
-            output "Installing Python"
-            brew install python
-
-            echo "alias python=/usr/local/bin/python3" >>"$HOME/.zshrc"
-            echo "alias pip=/usr/local/bin/pip3" >>"$HOME/.zshrc"
-            source "$HOME/.zshrc"
-        else
-            output "Python already installed"
-        fi
-    }
-
-    installNode() {
-        # Install Node if not installed
-        if ! command -v node >/dev/null; then
-            output "Installing Node"
-            brew install node
-        else
-            output "Node already installed"
+            output "$NAME already installed"
+            brew upgrade "$CASK_NAME"
         fi
     }
 
@@ -126,6 +84,11 @@
         # Install Pure Prompt if not installed
         output "Installing Pure Prompt"
         npm install --global pure-prompt
+    }
+
+    updateZshRC() {
+        output "Updating .zshrc"
+        curl -fsSL "$GITHUB_REPO/.zshrc" -o "$HOME/.zshrc"
     }
 
     installXCode() {
@@ -138,19 +101,6 @@
         else
             output "XCode already installed"
         fi
-    }
-
-    # Install unity
-    installUnity() {
-        # Install Unity
-        output "Installing Unity"
-        brew install --cask unity
-    }
-
-    installDockutil() {
-        # Install dockutil
-        output "Installing dockutil"
-        brew reinstall --cask hpedrorodrigues/tools/dockutil
     }
 
     installPythonPackage() {
@@ -239,15 +189,18 @@
     installXCode
     updateBrew
     removeOldTapsInBrew
-    installGoogleChrome
-    installVSCode
-    installGit
-    installVim
-    installPython
-    installNode
+    installHomebrewFormula "Google Chrome" "google-chrome"
+    installHomebrewFormula "Visual Studio Code" "visual-studio-code"
+    installHomebrewFormula "Git" "git"
+    installHomebrewFormula "Vim" "vim"
+    installHomebrewFormula "Python 3.x" "python3"
+    installHomebrewFormula "Node" "node"
+    installHomebrewFormula "Unity" "unity"
+    installHomebrewFormula "Dockutil" "hpedrorodrigues/tools/dockutil"
+
     installPurePrompt
-    #installUnity
-    installDockutil
+    updateZshRC
+
     upgradeBrew
     installPythonPackage
     updateDock
