@@ -11,7 +11,11 @@
 
     output() {
         printf "\n\n✅ %s\n" "$1"
-        say -r 300 "$1"
+
+        # TODO: Is this okay? https://unix.stackexchange.com/a/452568
+        # setopt local_options no_notify no_monitor
+
+        say -r 300 "$1" &
     }
 
     # install all software updates
@@ -33,6 +37,18 @@
     disableAutoLoginUser() {
         output "Disabling auto-login user"
         sudo defaults delete /Library/Preferences/com.apple.loginwindow autoLoginUser
+    }
+
+    enableFastUserSwitching() {
+        output "Enabling fast user switching"
+        sudo defaults write /Library/Preferences/.GlobalPreferences MultipleSessionEnabled -bool YES
+
+        # TODO: figure out how to enable fast user switching menu extra
+        # output "Enabling fast user switching menu extra"
+        # sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -bool YES
+
+        # # enable icon in menu bar
+        # sudo defaults write com.apple.systemuiserver menuExtras -array-add "/System/Library/CoreServices/Menu Extras/User.menu"
     }
 
     installHomebrew() {
@@ -198,6 +214,7 @@
     enableGuestAccount
     # setAutoLoginUser # disabled for now
     disableAutoLoginUser
+    enableFastUserSwitching
 
     installHomebrew
     disableHomebrewAnalytics
