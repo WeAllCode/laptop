@@ -47,6 +47,15 @@
 
     updateBrew() {
         output "Updating Homebrew"
+        brew update
+
+        output "Uninstall nextdns"
+        brew uninstall nextdns
+
+        output "Uninstall firefox"
+        brew uninstall firefox
+
+        output "Upgrading Homebrew"
         brew upgrade --greedy
     }
 
@@ -56,35 +65,15 @@
     }
 
     installGoogleChrome() {
-        # Install Google Chrome if not installed
-        if ! brew list --cask -1 google-chrome >/dev/null; then
-            output "Installing Google Chrome"
-            brew install --cask google-chrome
-        else
-            output "Google Chrome already installed"
-        fi
-    }
-
-    installFirefox() {
-        # Install Firefox if not installed
-        if ! brew list --cask -1 firefox >/dev/null; then
-            output "Installing Firefox"
-            brew install --cask firefox
-        else
-            output "Firefox already installed"
-        fi
+        # Install Google Chrome
+        output "Installing Google Chrome"
+        brew reinstall --cask --force google-chrome
     }
 
     installVSCode() {
-        # Install Visual Studio Code if not installed
-        if ! brew list --cask -1 visual-studio-code >/dev/null; then
-            output "Installing Visual Studio Code"
-            brew install --cask visual-studio-code
-        else
-            output "Visual Studio Code already installed"
-        fi
-
-        code --install-extension ms-python.python
+        # Install Visual Studio Code
+        output "Installing Visual Studio Code"
+        brew reinstall --cask --force visual-studio-code
     }
 
     installGit() {
@@ -143,7 +132,7 @@
             output "Installing XCode"
             # brew install mas
             # mas install 497799835
-            # xcode-select --install
+            xcode-select --install
         else
             output "XCode already installed"
         fi
@@ -176,14 +165,6 @@
             -auto-activate
     }
 
-    uninstallNextDNS() {
-        # Uninstall NextDNS if installed
-
-        output "Uninstalling NextDNS"
-        sudo nextdns uninstall
-
-    }
-
     installDockutil() {
         # Install dockutil if it's not installed
         if ! command -v dockutil >/dev/null; then
@@ -205,8 +186,6 @@
             --add /Applications/Google\ Chrome.app \
             --add /Applications/Visual\ Studio\ Code.app \
             --add /Applications/Unity/Unity.app
-
-        # --add /Applications/Firefox.app \
     }
 
     setBackground() {
@@ -279,18 +258,16 @@
     setAutoLoginUser
     installHomebrew
     disableHomebrewAnalytics
-    uninstallNextDNS
+    installXCode
     updateBrew
     removeOldTapsInBrew
     installGoogleChrome
-    # installFirefox
     installVSCode
     installGit
     installVim
     installPython
     installNode
     installPurePrompt
-    #installXCode
     #installUnity
     #installNextDNS
     installDockutil
