@@ -1,15 +1,11 @@
 #!/bin/bash
 
 GITHUB_REPO="https://raw.githubusercontent.com/WeAllCode/laptop/main"
-CODE_SETTINGS_LOCATION="/Users/Guest/Library/Application Support/Code/User/settings.json"
-BACKGROUND_URL="$GITHUB_REPO/weallcode-background.png"
-BACKGROUND_LOCATION="/Users/Shared/weallcode-background.png"
-ZSHRC_LOCATION="/Users/Guest/.zshrc"
-SURVEY_URL="https://wac.fyi/survey"
 
 # ---------------------------------------------
 
 # Add VS Code settings.json file to user settings
+CODE_SETTINGS_LOCATION="/Users/Guest/Library/Application Support/Code/User/settings.json"
 
 # Download settings.json
 curl -fsSL "$GITHUB_REPO/settings.json" -o "$CODE_SETTINGS_LOCATION"
@@ -29,11 +25,13 @@ pip3 install --upgrade --force-reinstall weallcode_robot
 # ---------------------------------------------
 
 # Update zsh prompt
+ZSHRC_LOCATION="/Users/Guest/.zshrc"
 curl -fsSL "$GITHUB_REPO/.zshrc" -o "$ZSHRC_LOCATION"
 
 # ---------------------------------------------
 
 # Open Survey
+SURVEY_URL="https://wac.fyi/survey"
 open "$SURVEY_URL"
 
 # ---------------------------------------------
@@ -52,6 +50,9 @@ sleep 1
 sleep 1
 
 # Set Background
+BACKGROUND_URL="$GITHUB_REPO/weallcode-background.png"
+BACKGROUND_LOCATION="/Users/Shared/weallcode-background.png"
+
 curl -fsSL "$BACKGROUND_URL" -o "$BACKGROUND_LOCATION"
 wallpaper set "$BACKGROUND_LOCATION"
 
