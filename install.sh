@@ -54,7 +54,9 @@
 
         output "Uninstall firefox"
         brew uninstall firefox
+    }
 
+    upgradeBrew() {
         output "Upgrading Homebrew"
         brew upgrade --greedy
     }
@@ -140,39 +142,15 @@
 
     # Install unity
     installUnity() {
-        # Install Unity if not installed
-        if ! brew list --cask -1 unity >/dev/null; then
-            output "Installing Unity"
-            brew install --cask unity
-        else
-            output "Unity already installed"
-        fi
-    }
-
-    installNextDNS() {
-        # Install NextDNS if not installed
-        if ! command -v nextdns >/dev/null; then
-            output "Installing NextDNS"
-            brew install nextdns/tap/nextdns
-        else
-            output "NextDNS already installed"
-        fi
-
-        output "Configuring NextDNS"
-        sudo nextdns install \
-            -config "e8fcc6" \
-            -report-client-info \
-            -auto-activate
+        # Install Unity
+        output "Installing Unity"
+        brew install --cask unity
     }
 
     installDockutil() {
-        # Install dockutil if it's not installed
-        if ! command -v dockutil >/dev/null; then
-            output "Installing dockutil"
-            brew install --cask hpedrorodrigues/tools/dockutil
-        else
-            output "dockutil already installed"
-        fi
+        # Install dockutil
+        output "Installing dockutil"
+        brew reinstall --cask hpedrorodrigues/tools/dockutil
     }
 
     installPythonPackage() {
@@ -269,8 +247,8 @@
     installNode
     installPurePrompt
     #installUnity
-    #installNextDNS
     installDockutil
+    upgradeBrew
     installPythonPackage
     updateDock
     setBackground
