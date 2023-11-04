@@ -152,69 +152,35 @@
             --add /Applications/Unity/Unity.app
     }
 
-    setBackground() {
-        desktopPictureLocation="/Users/Shared/weallcode-background.png"
-        desktopPictureURL="https://raw.githubusercontent.com/WeAllCode/linux-update/master/usr/share/backgrounds/weallcode-background.png"
-
-        output "Downloading background"
-        curl -o "$desktopPictureLocation" "$desktopPictureURL"
-
-        # output "Setting background"
-        # osascript -e "tell application \"System Events\" to set picture of every desktop to \"$desktopPictureLocation\""
-    }
-
     setLogonScript() {
         logonScriptLocation="/Users/Shared/logon.script.sh"
         logonScriptURL="$GITHUB_REPO/logon.script.sh"
 
-        output "Downloading log on script"
+        output "Downloading logon script"
         sudo curl -fsSL "$logonScriptURL" -o "$logonScriptLocation"
 
         sudo chown root "$logonScriptLocation"
         sudo chmod +x "$logonScriptLocation"
 
-        automatorZipLocation="/Users/Shared/setDesktopWallpaper.workflow.zip"
-        automatorLocation="/Users/Shared/setDesktopWallpaper.workflow"
-        automatorURL="$GITHUB_REPO/setDesktopWallpaper.workflow.zip"
-
-        sudo curl -fsSL "$automatorURL" -o "$automatorZipLocation"
-
-        sudo unzip -o "$automatorZipLocation" -d "/Users/Shared"
-        sudo chown root "$automatorZipLocation"
-        sudo rm "$automatorZipLocation"
-
-        sudo chown -R root "$automatorLocation"
-        sudo chmod -R +x "$automatorLocation"
+        # ---------------------------------------------
 
         logonPlistLocation="/Library/LaunchAgents/org.weallcode.logon.plist"
         logonPlistURL="$GITHUB_REPO/org.weallcode.logon.plist"
 
         # Download logon plist
-        output "Downloading log on plist"
+        output "Downloading logon plist"
         sudo curl -fsSL "$logonPlistURL" -o "$logonPlistLocation"
 
-        output "Enabling log on plist"
+        if launchctl list | grep -q "org.weallcode.logon"; then
+            output "Unloading org.weallcode.logon"
+            sudo launchctl unload -w "$logonPlistLocation"
+            launchctl unload -w "$logonPlistLocation"
+        fi
+
+        output "Enabling logon plist"
         sudo chown root "$logonPlistLocation"
-        sudo launchctl load "$logonPlistLocation"
-        launchctl load "$logonPlistLocation"
-
-        # # for reference:
-        # # ditto -c -k --sequesterRsrc --keepParent weallcode-logon.app weallcode-logon.app.zip
-
-        # logonScriptLocation="/Users/Shared/weallcode-logon.app"
-        # logonScriptURL="$GITHUB_REPO/weallcode-logon.app.zip"
-
-        # # download logon script if it doesn't exist
-        # if [ ! -f "$logonScriptLocation" ]; then
-        #     output "Downloading logon script"
-        #     curl -o "$logonScriptLocation.zip" "$logonScriptURL"
-        #     ditto -x -k "$logonScriptLocation.zip" "$logonScriptLocation"
-        # else
-        #     output "Logon script already exists"
-        # fi
-
-        # osascript -e "tell application \"System Events\" to make login item at end with properties {path:\"$logonScriptLocation\", hidden:false}"
-
+        sudo launchctl load -w "$logonPlistLocation"
+        launchctl load -w "$logonPlistLocation"
     }
 
     # runSoftwareUpdate # Runs slow
@@ -235,6 +201,7 @@
     brewInstall "Visual Studio Code" "visual-studio-code"
     brewInstall "Git" "git"
     brewInstall "Vim" "vim"
+    brewInstall "Wallpaper Changer" "wallpaper"
     brewInstall "Python 3.x" "python3"
     brewInstall "Node" "node"
     brewInstall "Unity" "unity" "--cask https://raw.githubusercontent.com/Homebrew/homebrew-cask/4dc5194f3806a9b10a289cf4eaf68f7eb5528691/Casks/unity.rb" # 2022.1.23f1,9636b062134a
@@ -249,7 +216,5 @@
     upgradeBrew
     installPythonPackage
     updateDock
-    setBackground
     setLogonScript
-
 }

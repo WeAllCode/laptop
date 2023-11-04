@@ -2,15 +2,16 @@
 
 GITHUB_REPO="https://raw.githubusercontent.com/WeAllCode/laptop/main"
 CODE_SETTINGS_LOCATION="/Users/Guest/Library/Application Support/Code/User/settings.json"
+BACKGROUND_URL="$GITHUB_REPO/weallcode-background.png"
 BACKGROUND_LOCATION="/Users/Shared/weallcode-background.png"
-BACKGROUND_AUTOMATOR_LOCATION="/Users/Shared/setDesktopWallpaper.workflow"
 ZSHRC_LOCATION="/Users/Guest/.zshrc"
 SURVEY_URL="https://wac.fyi/survey"
 
 # ---------------------------------------------
 
 # Set Background
-automator -i "$BACKGROUND_LOCATION" "$BACKGROUND_AUTOMATOR_LOCATION"
+curl -fsSL "$BACKGROUND_URL" -o "$BACKGROUND_LOCATION"
+wallpaper set "$BACKGROUND_LOCATION"
 
 # ---------------------------------------------
 
