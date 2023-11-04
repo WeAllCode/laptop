@@ -25,10 +25,11 @@ curl -fsSL "$GITHUB_REPO/settings.json" -o "$CODE_SETTINGS_LOCATION"
 code --install-extension ms-python.python
 
 # Upgrade pip
-python3 pip install --upgrade pip
+python3 -m pip install --upgrade --force-reinstall pip
 
 # Install python packages
-pip3 install --upgrade weallcode_robot
+python3 -m pip install --upgrade --force-reinstall weallcode_robot
+pip3 install --upgrade --force-reinstall weallcode_robot
 
 # ---------------------------------------------
 
