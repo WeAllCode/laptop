@@ -9,12 +9,6 @@ SURVEY_URL="https://wac.fyi/survey"
 
 # ---------------------------------------------
 
-# Set Background
-curl -fsSL "$BACKGROUND_URL" -o "$BACKGROUND_LOCATION"
-wallpaper set "$BACKGROUND_LOCATION"
-
-# ---------------------------------------------
-
 # Add VS Code settings.json file to user settings
 
 # Download settings.json
@@ -52,3 +46,13 @@ sleep 1
     --add /Applications/Google\ Chrome.app \
     --add /Applications/Visual\ Studio\ Code.app \
     --add /Applications/Unity/Unity.app
+
+# ---------------------------------------------
+
+sleep 1
+
+# Set Background
+curl -fsSL "$BACKGROUND_URL" -o "$BACKGROUND_LOCATION"
+wallpaper set "$BACKGROUND_LOCATION"
+
+# ---------------------------------------------
