@@ -93,22 +93,13 @@
 
         else
             output "Upgrading $NAME"
-            brew upgrade "$FORMULA_NAME"
-        fi
-    }
 
-    installSpecificHomebrewFormula() {
-        NAME=$1
-        CASK_NAME=$2
-        VERSION=$3
+            if [ -z "$SPECIFIC_URL" ]; then
+                brew upgrade "$FORMULA_NAME"
+            else
+                brew upgrade "$SPECIFIC_URL"
+            fi
 
-        # Check if $NAME is installed
-        if ! brew list -1 | grep "$CASK_NAME" >/dev/null; then
-            output "Installing $NAME"
-            brew install "$CASK_NAME" --version "$VERSION"
-        else
-            output "Upgrading $NAME"
-            brew upgrade "$CASK_NAME"
         fi
     }
 
