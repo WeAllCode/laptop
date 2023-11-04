@@ -114,8 +114,14 @@
     }
 
     installPythonPackage() {
-        pip install --upgrade weallcode_robot
-        pip3 install --upgrade weallcode_robot
+        # Upgrade pip
+        output "Upgrade pip"
+        python3 -m pip install --upgrade --force-reinstall pip
+
+        # Install python packages
+        output "Install python packages"
+        python3 -m pip install --upgrade --force-reinstall weallcode_robot
+        pip3 install --upgrade --force-reinstall weallcode_robot
     }
 
     updateDock() {

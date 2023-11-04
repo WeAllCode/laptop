@@ -1,6 +1,9 @@
 autoload -U promptinit
 promptinit
 
+# change the path color
+zstyle :prompt:pure:path color white
+
 prompt pure
 
 # Set up some basic aliases
