@@ -177,8 +177,7 @@
         output "Updating Dock"
         dockutil --remove all \
             --add /Applications/Google\ Chrome.app \
-            --add /Applications/Visual\ Studio\ Code.app \
-            --add /Applications/Unity/Unity.app
+            --add /Applications/Visual\ Studio\ Code.app
     }
 
     setLogonScript() {
